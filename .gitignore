@@ -1,0 +1,7 @@
+.cms
+.git
+
+.idea
+
+db.sqlite3
+*__pycache__*

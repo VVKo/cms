@@ -1,0 +1,35 @@
+{% extends "users/layout.html" %}
+{% load static %}
+{% block body %}
+
+    <form method="post" action="{% url 'custom_login' %}">
+    {% csrf_token %}
+
+    <img class="mb-4" src="https://getbootstrap.com/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+
+    <div class="form-floating">
+      {{ form.password }}
+      <label for="{{ form.password.id_for_label }}">Password</label>
+    </div>
+
+    <div class="checkbox mb-3">
+      <label for="{{ form.remember.id_for_label }}">{{ form.remember.label }}</label>
+        {{ form.remember }}
+    </div>
+        {% if redirect_field_value %}
+    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+    <p class="mt-5 mb-3 text-muted">© 2022</p>
+  </form>
+
+{% endblock %}
+{% block classbody %}class="text-center"{% endblock %}
+{% block classmain %}class="form-signin"{% endblock %}
+
+{% block customcss %} <link href="{% static 'users/login.css' %}" rel="stylesheet"> {% endblock %}
+{% block header %}
+{% endblock %}
+{% block footer %}
+{% endblock %}
