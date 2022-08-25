@@ -1,7 +1,7 @@
-{% extends "users/layout.html" %}
+{% extends "base.html" %}
 {% load socialaccount %}
   {% block body %}
-
+    <h1>User: {{ user }} {{ user.email }}</h1>
     {% if user.is_authenticated %}
         <div class="card flex-row flex-wrap my-3 py-3">
         <div class="card-header border-0 col-4 p-3">
