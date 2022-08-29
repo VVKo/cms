@@ -9,9 +9,13 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-import dj_database_url
+import os
+import sys
 from pathlib import Path
-import sys, os
+
+import environ
+
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,7 +24,11 @@ sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 IS_HEROKU = "DYNO" in os.environ
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-((*u*%i08*2p2#88j#n1gz!xh*3xfp!k%y1neo%c1y9w&ias8n'
+
+env = environ.Env()
+# reading .env file
+environ.Env.read_env()
+SECRET_KEY = env("SECRET_KEY", default="unsafe-secret-key")
 
 # Generally avoid wildcards(*). However since Heroku router provides hostname validation it is ok
 if IS_HEROKU:
@@ -160,7 +168,7 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend'
 ]
 
-SITE_ID = 2
+SITE_ID = 5  # 2 for production
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 ACCOUNT_EMAIL_VERIFICATION = "none"
