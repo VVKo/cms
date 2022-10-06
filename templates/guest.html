@@ -2,15 +2,15 @@
 {% load socialaccount %}
   {% block body %}
     <h1>Вітаю Вас, {{ user }}! </h1>
-    {% if user.is_authenticated %}
+    {% if request.user.is_authenticated %}
         <div class="card flex-row flex-wrap my-3 py-3">
         <div class="card-header border-0 col-4 p-3">
-            <img src="{{ user.socialaccount_set.all.0.get_avatar_url }}" alt="image" class="w-100">
+            <img src="{{ request.user.socialaccount_set.all.0.get_avatar_url }}" alt="image" class="w-100">
         </div>
         <div class="card-block px-2 col-8">
-            <h2 class="card-title">Welcome, {{ user.username }}</h2>
-            <h5 class="card-title">{{ user.socialaccount_set.all.0.extra_data.name }}</h5>
-            <p class="card-text">Last Login: {{ user.socialaccount_set.all.0.last_login}}</p>
+            <h2 class="card-title">Welcome, {{ request.user.username }}</h2>
+            <h5 class="card-title">{{ request.user.socialaccount_set.all.0.extra_data.name }}</h5>
+            <p class="card-text">Last Login: {{ request.user.socialaccount_set.all.0.last_login}}</p>
 {#            <p class="card-text"><small class="text-muted">UID: {{ user.socialaccount_set.all.0.uid }}</small></p>#}
         </div>
         <div class="w-100"></div>
@@ -45,14 +45,16 @@
 </svg>
     <nav class="py-2 bg-light border-bottom">
     <div class="container d-flex flex-wrap justify-content-end">
-
-          {% if user.is_authenticated %}
+<ul class="nav me-auto">
+        <li class="nav-item"><a href="{% url 'schedule_index' %}" class="nav-link link-dark px-2">Розклад</a></li>
+      </ul>
+          {% if request.user.is_authenticated %}
            <div class="dropdown text-end">
           <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle show" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="true">
-            <img src="{{ user.socialaccount_set.all.0.get_avatar_url }}" alt="mdo" width="32" height="32" class="rounded-circle">
+            <img src="{{ request.user.socialaccount_set.all.0.get_avatar_url }}" alt="mdo" width="32" height="32" class="rounded-circle">
           </a>
           <ul class="dropdown-menu text-small show" aria-labelledby="dropdownUser1" style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate(0px, 34px);" data-popper-placement="bottom-end">
-            <li><a class="dropdown-item" href="{% url 'logout' %}">Sign out</a></li>
+            <li><a class="dropdown-item" href="{% url 'users:logout' %}">Sign out</a></li>
           </ul>
         </div>
           {% else %}
@@ -65,3 +67,4 @@
   </nav>
 
     {% endblock %}
+

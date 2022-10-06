@@ -53,6 +53,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'apps.users',
+    'apps.api',
+    'apps.schedule',
+    'apps.academicyear',
     'django.contrib.sites',
     'allauth',
     'allauth.account',
@@ -189,6 +192,9 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
+
+ACCOUNT_ADAPTER = 'CMS.adapters.CustomAccountAdapter'
+SOCIALACCOUNT_ADAPTER = 'CMS.adapters.CustomSocialAccountAdapter'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 

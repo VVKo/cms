@@ -1,20 +1,20 @@
 {% extends "base.html" %}
 {% load socialaccount %}
   {% block body %}
-    <h1>User: {{ user }} {{ user.email }}</h1>
-    {% if user.is_authenticated %}
-        <div class="card flex-row flex-wrap my-3 py-3">
-        <div class="card-header border-0 col-4 p-3">
-            <img src="{{ user.socialaccount_set.all.0.get_avatar_url }}" alt="image" class="w-100">
-        </div>
-        <div class="card-block px-2 col-8">
-            <h2 class="card-title">Welcome, {{ user.username }}</h2>
-            <h5 class="card-title">{{ user.socialaccount_set.all.0.extra_data.name }}</h5>
-            <p class="card-text">Last Login: {{ user.socialaccount_set.all.0.last_login}}</p>
-            <p class="card-text"><small class="text-muted">UID: {{ user.socialaccount_set.all.0.uid }}</small></p>
-        </div>
-        <div class="w-100"></div>
-    </div>
-    {% endif %}
 
   {% endblock %}
+
+{% block menubar %}
+<ul class="nav me-auto">
+{% for role in roles %}
+        <li class="nav-item"><a href="#" class="nav-link link-dark px-2">{{ role }}</a></li>
+{% endfor %}
+      </ul>
+{% endblock %}
+
+{% block dropdownmenu %}
+    <li><span class="dropdown-item">Ролі...</span></li>
+    {% for role in roles %}
+        <li><a class="dropdown-item" href="#">{{ role }}</a></li>
+{% endfor %}
+{% endblock %}

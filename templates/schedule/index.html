@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+  {% block body %}
+<div id="content">
+    <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
+
+  {% endblock %}
+
+{% block javascript %}
+<script>
+
+
+            document.addEventListener('DOMContentLoaded', function() {
+                        fetch(`/schedule/get`)
+                .then(response => response.json())
+                .then(text => {
+                    // Log text and display on page
+                    console.log(text);
+                    document.querySelector('#content').innerHTML = JSON.stringify(text,null,2);
+                });
+                });
+
+        </script>
+{% endblock %}
