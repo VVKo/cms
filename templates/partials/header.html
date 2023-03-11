@@ -2,23 +2,24 @@
 {% if request.user.is_authenticated %}
     <div class="container">
     <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-      <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
-        <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
-      </a>
+{#      <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">#}
+{#        <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>#}
+{#      </a>#}
 
        <div class="row g-3 align-items-center">
 <select class="form-select col-1 mb-2 justify-content-center mb-md-0" aria-label="Default select example">
-  <option selected>Open this select menu</option>
-  <option value="1">One</option>
+  <option >Open this select menu</option>
+  <option selected value="1">One</option>
   <option value="2">Two</option>
   <option value="3">Three</option>
 </select>
         </div>
-        {% if request.user.is_superuser %}
-            суперюзер
-            {% endif %}
+
 
       <div class="col-md-3 text-end">
+           {% if request.user.is_superuser %}
+            суперюзер
+            {% endif %}
         <a href="{% url 'users:logout' %}"><button type="button" class="btn btn-outline-primary me-2">Вихід</button></a>
       </div>
     </header>
@@ -31,9 +32,9 @@
       </a>
         <div class="row g-3 align-items-center">
 <select class="form-select col-1 mb-2 justify-content-center mb-md-0" aria-label="Default select example">
-  <option selected>Open this select menu</option>
+  <option >Open this select menu</option>
   <option value="1">One</option>
-  <option value="2">Two</option>
+  <option selected value="2">Two</option>
   <option value="3">Three</option>
 </select>
         </div>
